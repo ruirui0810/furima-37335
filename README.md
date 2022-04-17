@@ -30,49 +30,53 @@ Things you may want to cover:
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
-| email              | string | null: false |
-| password           | string | null: false |
-| last-name          | string | null: false |
-| fast-name          | string | null: false |
-| last-name-kana     | string | null: false |
-| fast-name-kana     | string | null: false |
-| birth-date         | string | null: false |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false |
+| last_name          | string | null: false |
+| fast_name          | string | null: false |
+| last_name-kana     | string | null: false |
+| fast_name-kana     | string | null: false |
+| birth_date         | string | null: false |
 
 ### Association
 
+- has_many :items
+- has_many :orders
 
 
 ## items テーブル
 
-| Column                     | Type       | Options     |
-| -------------------------- | ---------- | ----------- |
-| item-image                 | text       | null: false |
-| item-name                  | text       | null: false |
-| item-info                  | text       | null: false |
-| item-category              | text       | null: false |
-| item-sales-status          | text       | null: false |
-| item-shipping-free-status  | text       | null: false |
-| item-prefecture            | text       | null: false |
-| item-scheduled-delivery    | text       | null: false |
-| item-price                 | string     | null: false |
-| user_id                    | references | nill: false, foreign_key: true |
+| Column                        | Type       | Options     |
+| ----------------------------- | ---------- | ----------- |
+| item_name                     | string     | null: false |
+| item_info                     | text       | null: false |
+| item_category_id              | integer    | null: false |
+| item_sales_status-id          | integer    | null: false |
+| item_shipping_free_status_id  | integer    | null: false |
+| item_prefecture-id            | integer    | null: false |
+| item_scheduled_delivery-id    | integer    | null: false |
+| item_price                    | integer    | null: false |
+| user                          | references | nill: false, foreign_key: true |
 
 ### Association
 
+- belong_to :users
 
 
 ## orders テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| postal-code        | string     | null: false |
-| prefecture         | string     | null: false |
+| postal_code        | string     | null: false |
+| item_prefecture_id | integer    | null: false |
 | city               | string     | null: false |
 | addresses          | string     | null: false |
-| building           | string     | null: false |
-| phone-number       | string     | null: false |
-| user-id            | references | nill: false, foreign_key: true |
-| item-id            | references | nill: false, foreign_key: true |
+| building           | string     | 
+| phone_number       | string     | null: false |
+| user               | references | nill: false, foreign_key: true |
+| item               | references | nill: false, foreign_key: true |
 
 ### Association
 
+- belong_to :users
+- belong_to :items
