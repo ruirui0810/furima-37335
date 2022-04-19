@@ -34,14 +34,15 @@ Things you may want to cover:
 | encrypted_password | string | null: false |
 | last_name          | string | null: false |
 | fast_name          | string | null: false |
-| last_name-kana     | string | null: false |
-| fast_name-kana     | string | null: false |
-| birth_date         | string | null: false |
+| last_name_kana     | string | null: false |
+| fast_name_kana     | string | null: false |
+| birth_date         | date   | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :orders
+
 
 
 ## items テーブル
@@ -51,19 +52,22 @@ Things you may want to cover:
 | item_name                     | string     | null: false |
 | item_info                     | text       | null: false |
 | item_category_id              | integer    | null: false |
-| item_sales_status-id          | integer    | null: false |
+| item_sales_status_id          | integer    | null: false |
 | item_shipping_free_status_id  | integer    | null: false |
-| item_prefecture-id            | integer    | null: false |
-| item_scheduled_delivery-id    | integer    | null: false |
+| item_prefecture_id            | integer    | null: false |
+| item_scheduled_delivery_id    | integer    | null: false |
 | item_price                    | integer    | null: false |
-| user                          | references | nill: false, foreign_key: true |
+| user                          | references | null: false, foreign_key: true |
 
 ### Association
 
-- belong_to :users
+- belong_to :user
+- has_many :address
+- has_many :orders
 
 
-## orders テーブル
+
+## address テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
@@ -73,10 +77,27 @@ Things you may want to cover:
 | addresses          | string     | null: false |
 | building           | string     | 
 | phone_number       | string     | null: false |
-| user               | references | nill: false, foreign_key: true |
-| item               | references | nill: false, foreign_key: true |
+| order              | references | null: false, foreign_key: true |
 
 ### Association
 
-- belong_to :users
-- belong_to :items
+
+- belong_to :item
+- has_many :orders
+
+
+
+## orders テーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| user               | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
+| sddres             | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belong_to :user
+- belong_to :addres
+- belong_to :item
