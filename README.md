@@ -81,7 +81,7 @@ Things you may want to cover:
 ### Association
 
 
-- belong_to :orders
+- belong_to :order
 
 
 
