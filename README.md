@@ -61,13 +61,12 @@ Things you may want to cover:
 
 ### Association
 
-- belong_to :user
-- has_many :address
-- has_many :orders
+- belongs_to :user
+- has_one :order
 
 
 
-## address テーブル
+## addresses テーブル
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
@@ -82,8 +81,7 @@ Things you may want to cover:
 ### Association
 
 
-- belong_to :item
-- has_many :orders
+- belong_to :orders
 
 
 
@@ -93,11 +91,10 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
-| sddres             | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belong_to :user
-- belong_to :addres
-- belong_to :item
+- belongs_to :user
+- belongs_to :item
+- has_one :address
