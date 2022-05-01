@@ -10,7 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_075603) do
+ActiveRecord::Schema.define(version: 2022_05_01_055108) do
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "item_name"
+    t.text "item_info"
+    t.integer "item_category_id"
+    t.integer "item_sales_status_id"
+    t.integer "item_shipping_free_status_id"
+    t.integer "item_prefecture_id"
+    t.integer "item_scheduled_delivery_id"
+    t.integer "item_price"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
