@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   belongs_to :item_shipping_free_status
   belongs_to :item_prefecture
   belongs_to :item_scheduled_delivery
+  has_one_attached :image
 
 
   validates :item_name, presence: true
