@@ -6,6 +6,11 @@ RSpec.describe Item, type: :model do
 
   describe '商品出品機能' do
 
+    context '商品出品できるとき' do
+      it 'item_name,item_info,item_category_id,item_sales_status_id,item_shipping_free_status_id,item_prefecture_id,item_scheduled_delivery_id,item_price,imageが存在すれば登録できる' do
+        expect(@item).to be_valid
+      end
+    end
 
     context '商品出品できないとき' do
 
@@ -87,12 +92,12 @@ RSpec.describe Item, type: :model do
       it 'item_priceが300円未満では出品できない' do
         @item.item_price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item price is too short (minimum is 300 characters)")
+        expect(@item.errors.full_messages).to include("Item price must be greater than or equal to 300")
       end
       it 'item_priceが9_999_999円を超えると出品できない' do
         @item.item_price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item price is too short (minimum is 300 characters)")
+        expect(@item.errors.full_messages).to include("Item price must be less than or equal to 9999999")
       end
       it 'userが紐付いていなければ出品できない' do
         @item.user = nil
