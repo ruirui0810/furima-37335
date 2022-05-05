@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   validates :item_prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :item_scheduled_delivery_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
 
-  validates :item_price, presence: true
+  validates :item_price, presence: true, length: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   validates :user, presence: true
 
   validates :image, presence: true
