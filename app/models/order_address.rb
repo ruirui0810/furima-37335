@@ -11,6 +11,12 @@ class OrderAddress
     validates :addresses
     validates :phone_number, null: false, length: { in: 10..11 }
   end
-  validates :building
+
+  validate :building
+
+  def save
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Address.create(postal_code: postal_code, item_prefecture_id: item_prefecture_id, city: city, addresses: addresses, building: building, phone_number: phone_number, order: order)
+  end
 
 end
