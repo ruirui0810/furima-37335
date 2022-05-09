@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
   
   def create
-    @order_address = OrderAddress.new(order_paramd)
+    @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
       @order_address.save
       redirect_to order_path
