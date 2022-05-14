@@ -60,7 +60,7 @@ private
 
   def  item_purchase
     @item = Item.find(params[:id])
-    if @item.present?
+    if @item.order.present?
       redirect_to root_path
     end
   end
