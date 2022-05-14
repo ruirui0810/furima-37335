@@ -13,7 +13,6 @@ class OrderAddress
     validates :phone_number, null: false, length: { in: 10..11 }
   end
 
-  validate :building
   validates :token, presence: true
 
   def save
