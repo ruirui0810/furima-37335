@@ -55,11 +55,10 @@ private
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
   def  item_purchase
-    @item = Item.find(params[:id])
     if @item.order.present?
       redirect_to root_path
     end
